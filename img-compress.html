@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PicSqueeze | Smart Image Compression Tool</title>
+    <meta name="description" content="Free online image compressor with advanced optimization. Reduce image size up to 90% without losing quality. Perfect for web, social media, and storage.">
+    <meta name="keywords" content="image compressor, optimize images, reduce file size, free image optimization, webp converter, jpg optimizer">
+    <meta name="author" content="PicSqueeze">
+    <meta property="og:title" content="PicSqueeze | Smart Image Compression Tool">
+    <meta property="og:description" content="Free online image compressor with advanced optimization.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://picsqueeze.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --dark-light: #374151;
+            --light: #f9fafb;
+            --gray: #9ca3af;
+            --light-gray: #e5e7eb;
+            --border-radius: 16px;
+            --border-radius-sm: 10px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 18px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo-text span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-light);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 0;
+            position: relative;
+            font-size: 15px;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .theme-toggle {
+            background: var(--light);
+            border: 1px solid var(--light-gray);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: var(--gradient);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--dark-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+        
+        /* Tool Container */
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 992px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Upload Card */
+        .upload-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .upload-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-header {
+            margin-bottom: 28px;
+        }
+        
+        .card-header h2 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-header h2 i {
+            color: var(--primary);
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 28px;
+            background: var(--light);
+        }
+        
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .upload-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+            font-size: 32px;
+        }
+        
+        .upload-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .upload-text p {
+            color: var(--gray);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+        
+        .browse-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+        
+        .browse-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .file-info {
+            background: var(--light);
+            border-radius: var(--border-radius-sm);
+            padding: 16px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .file-info.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* Controls */
+        .controls-group {
+            margin-bottom: 24px;
+        }
+        
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .control-label span:first-child {
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-label span:last-child {
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .quality-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--light-gray);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .quality-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+            transition: var(--transition);
+        }
+        
+        .quality-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.5);
+        }
+        
+        .quality-marks {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .format-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .format-option {
+            background: var(--light);
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius-sm);
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .format-option:hover {
+            border-color: var(--primary-light);
+            background: rgba(99, 102, 241, 0.05);
+        }
+        
+        .format-option.active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+        
+        .format-option i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .format-option span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .btn {
+            padding: 16px 24px;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--light);
+            color: var(--dark);
+            border: 2px solid var(--light-gray);
+        }
+        
+        .btn-secondary:hover {
+            background: #f3f4f6;
+            border-color: var(--gray);
+        }
+        
+        /* Preview Card */
+        .preview-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .preview-placeholder {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: var(--gray);
+            text-align: center;
+        }
+        
+        .preview-placeholder i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: var(--light-gray);
+        }
+        
+        .image-container {
+            position: relative;
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            background: var(--light);
+            margin-bottom: 24px;
+            flex: 1;
+            display: none;
+        }
+        
+        .image-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .image-preview {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .results {
+            background: var(--light);
+            border-radius: var(--border-radius-sm);
+            padding: 24px;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .result-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--dark-light);
+            font-size: 0.95rem;
+        }
+        
+        .result-value {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .result-badge {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .download-section {
+            margin-top: 24px;
+        }
+        
+        .btn-download {
+            width: 100%;
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 18px 24px;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-download:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-download:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Ad Sections */
+        .ad-section {
+            margin: 40px 0;
+        }
+        
+        .ad-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .ad-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+        
+        .ad-placeholder i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+        
+        /* Features */
+        .features {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+        
+        .section-title p {
+            color: var(--dark-light);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+            font-size: 28px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--dark-light);
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 8px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .format-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                display: none;
+                margin-top: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px 0;
+                border-top: 1px solid var(--light-gray);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .stats {
+                gap: 30px;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+            
+            .upload-card, .preview-card {
+                padding: 24px;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .upload-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .format-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-container {
+                gap: 20px;
+            }
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--dark);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 350px;
+        }
+        
+        .notification.success {
+            background: var(--secondary);
+        }
+        
+        .notification.error {
+            background: #ef4444;
+        }
+        
+        .notification i {
+            font-size: 20px;
+        }
+        
+        /* Loading */
+        .loading {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--border-radius-sm);
+            z-index: 10;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .loading.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--light-gray);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 16px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">PS</div>
+                <div class="logo-text">Pic<span>Squeeze</span></div>
+            </a>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#" class="active">Compressor</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Top Ad -->
+    <div class="container ad-section">
+        <div class="ad-container">
+            <span class="ad-label">Advertisement</span>
+            <div class="ad-placeholder" id="ad-top">
+                <i>📢 Ad Space</i>
+                <p>Responsive Ad - 728x90</p>
+                <p>Ad Unit ID: ca-pub-XXXXXXXXXXXXXXXX</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Compress Images Without Losing Quality</h1>
+            <p>Optimize your JPG, PNG, WebP, and SVG images with our intelligent compression algorithm. Perfect for web, social media, and storage.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-value">90%</span>
+                    <span class="stat-label">Size Reduction</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">50K+</span>
+                    <span class="stat-label">Images Processed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Privacy Guaranteed</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compression Tool -->
+        <div class="tool-container">
+            <!-- Upload Section -->
+            <div class="upload-card">
+                <div class="card-header">
+                    <h2><i>📤</i> Upload Image</h2>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i>📁</i>
+                    </div>
+                    <div class="upload-text">
+                        <h3>Drop your image here</h3>
+                        <p>or click to browse files (Max 10MB)</p>
+                        <button class="browse-btn" id="browseBtn">
+                            <i>📎</i> Select Image
+                        </button>
+                        <input type="file" id="fileInput" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="file-info" id="fileInfo">
+                    <div class="result-item">
+                        <span class="result-label">
+                            <i>📄</i> Selected File:
+                        </span>
+                        <span class="result-value" id="fileName">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">
+                            <i>📊</i> Original Size:
+                        </span>
+                        <span class="result-value" id="fileSize">-</span>
+                    </div>
+                </div>
+                
+                <div class="controls-group">
+                    <div class="control-label">
+                        <span><i>🎚️</i> Compression Level</span>
+                        <span id="qualityValue">80%</span>
+                    </div>
+                    <input type="range" class="quality-slider" id="qualitySlider" min="10" max="100" value="80">
+                    <div class="quality-marks">
+                        <span>Small</span>
+                        <span>Balanced</span>
+                        <span>High Quality</span>
+                    </div>
+                </div>
+                
+                <div class="controls-group">
+                    <div class="control-label">
+                        <span><i>🔄</i> Output Format</span>
+                    </div>
+                    <div class="format-options">
+                        <div class="format-option active" data-format="original">
+                            <i>🔄</i>
+                            <span>Original</span>
+                        </div>
+                        <div class="format-option" data-format="jpeg">
+                            <i>🖼️</i>
+                            <span>JPEG</span>
+                        </div>
+                        <div class="format-option" data-format="png">
+                            <i>📸</i>
+                            <span>PNG</span>
+                        </div>
+                        <div class="format-option" data-format="webp">
+                            <i>⚡</i>
+                            <span>WebP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="compressBtn">
+                        <i>⚡</i> Compress Now
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                        <i>🔄</i> Reset All
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Preview Section -->
+            <div class="preview-card">
+                <div class="preview-header">
+                    <h2><i>👁️</i> Preview & Results</h2>
+                    <div class="result-badge" id="savingsBadge" style="display: none;">0% Saved</div>
+                </div>
+                
+                <div class="preview-placeholder" id="previewPlaceholder">
+                    <i>🖼️</i>
+                    <p>Your compressed image will appear here</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px; color: var(--gray);">Upload and compress an image to see results</p>
+                </div>
+                
+                <div class="image-container" id="imageContainer">
+                    <div class="loading" id="imageLoading">
+                        <div class="spinner"></div>
+                        <p>Compressing image...</p>
+                    </div>
+                    <img class="image-preview" id="imagePreview" alt="Compressed Preview">
+                </div>
+                
+                <div class="results" id="resultsContainer" style="display: none;">
+                    <div class="result-item">
+                        <span class="result-label">
+                            <i>📊</i> Original Size
+                        </span>
+                        <span class="result-value" id="originalSize">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">
+                            <i>📉</i> Compressed Size
+                        </span>
+                        <span class="result-value" id="compressedSize">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">
+                            <i>💾</i> Space Saved
+                        </span>
+                        <span class="result-value" id="sizeReduction">-</span>
+                    </div>
+                </div>
+                
+                <div class="download-section">
+                    <button class="btn-download" id="downloadBtn" disabled>
+                        <i>⬇️</i> Download Compressed Image
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Ad -->
+        <div class="ad-section">
+            <div class="ad-container">
+                <span class="ad-label">Advertisement</span>
+                <div class="ad-placeholder" id="ad-middle">
+                    <i>📱 Ad Space</i>
+                    <p>Responsive Ad - 300x250</p>
+                    <p>Ad Unit ID: ca-pub-XXXXXXXXXXXXXXXX</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="section-title">
+                <h2>Why Choose PicSqueeze?</h2>
+                <p>Our advanced compression technology ensures the best balance between quality and file size</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>⚡</i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Compress images in milliseconds with our optimized algorithm. No waiting, instant results.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>🔒</i>
+                    </div>
+                    <h3>100% Secure</h3>
+                    <p>All processing happens in your browser. Your images never leave your device.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>🎯</i>
+                    </div>
+                    <h3>Smart Compression</h3>
+                    <p>Intelligent algorithms that preserve quality while maximizing compression.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i>📱</i>
+                    </div>
+                    <h3>Fully Responsive</h3>
+                    <p>Works perfectly on all devices - desktop, tablet, and mobile phones.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>PicSqueeze</h3>
+                    <p style="color: #d1d5db; margin-bottom: 20px; font-size: 0.95rem;">
+                        Free online image compression tool that helps you optimize images for web and mobile.
+                    </p>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">
+                        Supporting JPG, PNG, WebP, and SVG formats.
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Image Optimization Guide</a></li>
+                        <li><a href="#">Web Performance Tips</a></li>
+                        <li><a href="#">Supported Formats</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> PicSqueeze. All rights reserved. | Images are processed locally in your browser for maximum privacy.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const browseBtn = document.getElementById('browseBtn');
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityValue = document.getElementById('qualityValue');
+        const formatOptions = document.querySelectorAll('.format-option');
+        const compressBtn = document.getElementById('compressBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewPlaceholder = document.getElementById('previewPlaceholder');
+        const imageContainer = document.getElementById('imageContainer');
+        const imageLoading = document.getElementById('imageLoading');
+        const originalSize = document.getElementById('originalSize');
+        const compressedSize = document.getElementById('compressedSize');
+        const sizeReduction = document.getElementById('sizeReduction');
+        const savingsBadge = document.getElementById('savingsBadge');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // State variables
+        let originalImage = null;
+        let originalImageSize = 0;
+        let compressedImageUrl = null;
+        let selectedFormat = 'original';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Initialize event listeners
+            setupEventListeners();
+            
+            // Check for dark mode preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '☀️';
+            }
+            
+            // Show notification on load
+            setTimeout(() => {
+                showNotification('✨ Welcome to PicSqueeze! Upload an image to start compressing.', 'success');
+            }, 1000);
+        });
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            
+            // Theme toggle
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // File upload
+            browseBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+            
+            // Drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    handleFileSelect();
+                }
+            });
+            
+            // Quality slider
+            qualitySlider.addEventListener('input', updateSliderValue);
+            
+            // Format selection
+            formatOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    formatOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    selectedFormat = option.dataset.format;
+                });
+            });
+            
+            // Buttons
+            compressBtn.addEventListener('click', compressImage);
+            resetBtn.addEventListener('click', resetTool);
+            downloadBtn.addEventListener('click', downloadImage);
+        }
+        
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? '✕' : '☰';
+        }
+        
+        // Toggle theme
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+        
+        // Handle file selection
+        function handleFileSelect() {
+            if (!fileInput.files.length) return;
+            
+            const file = fileInput.files[0];
+            
+            // Validate file type
+            if (!file.type.match('image.*')) {
+                showNotification('❌ Please select an image file (JPG, PNG, WebP, etc.)', 'error');
+                return;
+            }
+            
+            // Validate file size (10MB max)
+            if (file.size > 10 * 1024 * 1024) {
+                showNotification('❌ File size too large. Maximum 10MB allowed.', 'error');
+                return;
+            }
+            
+            // Store original file size
+            originalImageSize = file.size;
+            
+            // Update file info
+            fileName.textContent = file.name.length > 20 ? file.name.substring(0, 20) + '...' : file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            fileInfo.classList.add('active');
+            
+            // Display original image
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                originalImage = new Image();
+                originalImage.onload = function() {
+                    // Reset preview
+                    previewPlaceholder.style.display = 'none';
+                    imageContainer.classList.add('active');
+                    imagePreview.src = e.target.result;
+                    
+                    // Reset results
+                    resetResults();
+                    
+                    // Show success message
+                    showNotification('✅ Image loaded successfully! Adjust settings and click Compress.', 'success');
+                };
+                originalImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // Update slider value display
+        function updateSliderValue() {
+            const value = qualitySlider.value;
+            qualityValue.textContent = `${value}%`;
+        }
+        
+        // Compress image
+        function compressImage() {
+            if (!originalImage) {
+                showNotification('📸 Please upload an image first', 'error');
+                return;
+            }
+            
+            // Show loading state
+            compressBtn.disabled = true;
+            compressBtn.innerHTML = '<i>⏳</i> Compressing...';
+            imageLoading.classList.add('active');
+            
+            // Get compression quality
+            const quality = qualitySlider.value / 100;
+            
+            // Get format
+            const format = selectedFormat === 'original' ? 'jpeg' : selectedFormat;
+            
+            // Simulate compression with delay
+            setTimeout(() => {
+                try {
+                    // Create canvas
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas dimensions
+                    canvas.width = originalImage.width;
+                    canvas.height = originalImage.height;
+                    
+                    // Draw image
+                    ctx.drawImage(originalImage, 0, 0);
+                    
+                    // Generate compressed image
+                    compressedImageUrl = canvas.toDataURL(`image/${format}`, quality);
+                    
+                    // Calculate compressed size
+                    const base64Size = compressedImageUrl.length - compressedImageUrl.indexOf(',') - 1;
+                    const compressedSizeBytes = Math.floor(base64Size * 0.75);
+                    
+                    // Update UI with results
+                    updateResults(compressedSizeBytes);
+                    
+                    // Update preview
+                    imagePreview.src = compressedImageUrl;
+                    
+                    // Enable download
+                    downloadBtn.disabled = false;
+                    downloadBtn.innerHTML = `<i>⬇️</i> Download (${formatFileSize(compressedSizeBytes)})`;
+                    
+                    // Show success notification
+                    showNotification('🎉 Image compressed successfully! Ready to download.', 'success');
+                    
+                } catch (error) {
+                    showNotification('❌ Compression failed. Please try again.', 'error');
+                    console.error('Compression error:', error);
+                } finally {
+                    // Reset button state
+                    compressBtn.disabled = false;
+                    compressBtn.innerHTML = '<i>⚡</i> Compress Now';
+                    imageLoading.classList.remove('active');
+                }
+            }, 1500);
+        }
+        
+        // Update results display
+        function updateResults(compressedSizeBytes) {
+            // Calculate savings
+            const savings = 100 - (compressedSizeBytes / originalImageSize * 100);
+            
+            // Update display
+            originalSize.textContent = formatFileSize(originalImageSize);
+            compressedSize.textContent = formatFileSize(compressedSizeBytes);
+            sizeReduction.textContent = `${savings.toFixed(1)}%`;
+            savingsBadge.textContent = `${savings.toFixed(0)}% Saved`;
+            savingsBadge.style.display = 'block';
+            
+            // Show results container
+            resultsContainer.style.display = 'block';
+            
+            // Add pulse animation to savings badge
+            savingsBadge.style.animation = 'pulse 1s ease';
+            setTimeout(() => {
+                savingsBadge.style.animation = '';
+            }, 1000);
+        }
+        
+        // Reset results
+        function resetResults() {
+            originalSize.textContent = '-';
+            compressedSize.textContent = '-';
+            sizeReduction.textContent = '-';
+            savingsBadge.style.display = 'none';
+            resultsContainer.style.display = 'none';
+            downloadBtn.disabled = true;
+            downloadBtn.innerHTML = '<i>⬇️</i> Download Compressed Image';
+            compressedImageUrl = null;
+        }
+        
+        // Reset tool
+        function resetTool() {
+            // Reset file input
+            fileInput.value = '';
+            
+            // Reset UI
+            previewPlaceholder.style.display = 'flex';
+            imageContainer.classList.remove('active');
+            fileInfo.classList.remove('active');
+            
+            // Reset controls
+            qualitySlider.value = 80;
+            updateSliderValue();
+            
+            // Reset format selection
+            formatOptions.forEach(opt => opt.classList.remove('active'));
+            document.querySelector('.format-option[data-format="original"]').classList.add('active');
+            selectedFormat = 'original';
+            
+            // Reset state
+            originalImage = null;
+            originalImageSize = 0;
+            compressedImageUrl = null;
+            
+            // Reset results
+            resetResults();
+            
+            // Show notification
+            showNotification('🔄 Tool reset. Ready for new image!', 'success');
+        }
+        
+        // Download image
+        function downloadImage() {
+            if (!compressedImageUrl) return;
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = compressedImageUrl;
+            
+            // Generate filename
+            const originalName = fileInput.files[0]?.name || 'image';
+            const nameWithoutExt = originalName.replace(/\.[^/.]+$/, "");
+            const format = selectedFormat === 'original' ? 
+                originalName.split('.').pop() : selectedFormat;
+            
+            link.download = `${nameWithoutExt}_compressed.${format}`;
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show notification
+            showNotification('✅ Download started! Check your downloads folder.', 'success');
+            
+            // Track download (in a real app, you might want to track this)
+            setTimeout(() => {
+                showNotification('🌟 Thanks for using PicSqueeze! Want to compress another image?', 'success');
+            }, 2000);
+        }
+        
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            document.querySelectorAll('.notification').forEach(n => n.remove());
+            
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `<i>${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}</i> ${message}`;
+            
+            // Add to DOM
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideIn 0.3s ease reverse';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+        
+        // Initialize AdSense (placeholder - replace with actual AdSense code)
+        function initializeAds() {
+            // In a real implementation, you would initialize AdSense here
+            console.log('AdSense ready - replace placeholders with actual ad units');
+        }
+        
+        // Add dark mode styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .dark-mode {
+                --dark: #f9fafb;
+                --dark-light: #e5e7eb;
+                --light: #1f2937;
+                --light-gray: #374151;
+                --gray: #9ca3af;
+                background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+                color: #f9fafb;
+            }
+            
+            .dark-mode header {
+                background: rgba(31, 41, 55, 0.95);
+                border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+            }
+            
+            .dark-mode .upload-card,
+            .dark-mode .preview-card,
+            .dark-mode .ad-container,
+            .dark-mode .feature-card {
+                background: #374151;
+                color: #f9fafb;
+            }
+            
+            .dark-mode .upload-area,
+            .dark-mode .file-info,
+            .dark-mode .results,
+            .dark-mode .format-option:not(.active) {
+                background: #4b5563;
+            }
+            
+            .dark-mode .btn-secondary {
+                background: #4b5563;
+                color: #f9fafb;
+                border-color: #6b7280;
+            }
+            
+            .dark-mode .btn-secondary:hover {
+                background: #6b7280;
+            }
+            
+            .dark-mode .quality-slider {
+                background: #4b5563;
+            }
+            
+            .dark-mode .result-label {
+                color: #d1d5db;
+            }
+            
+            .dark-mode .hero p,
+            .dark-mode .section-title p {
+                color: #d1d5db;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
